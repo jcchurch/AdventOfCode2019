@@ -1,8 +1,9 @@
-def getMemory(code, position, mode):
+def getMemory(code, index, paramOffset):
+    mode = code[index] // (10 ** (1+paramOffset)) % 10
     if mode == 0:
-        return code[code[position]]
+        return code[code[index + paramOffset]]
     if mode == 1:
-        return code[position]
+        return code[index + paramOffset]
     raise Exception("invalid mode. mode={}".format(mode))
 
 def writeMemory(code, position, value):
@@ -12,19 +13,14 @@ def intComputer(code):
     index = 0
     while code[index] != 99:
         op = code[index] % 100
-        m1 = code[index] // 100 % 10
-        m2 = code[index] // 1000 % 10
-        m3 = code[index] // 10000 % 10 # Currently not in use
-        if op == 0:
-            return
         if op == 1:
-            first = getMemory(code, index + 1, m1)
-            second = getMemory(code, index + 2, m2)
+            first = getMemory(code, index, 1)
+            second = getMemory(code, index, 2)
             writeMemory(code, index + 3, first + second)
             index += 4
         if op == 2:
-            first = getMemory(code, index + 1, m1)
-            second = getMemory(code, index + 2, m2)
+            first = getMemory(code, index, 1)
+            second = getMemory(code, index, 2)
             writeMemory(code, index + 3, first * second)
             index += 4
         if op == 3:
@@ -32,7 +28,7 @@ def intComputer(code):
             writeMemory(code, index + 1, value)
             index += 2
         if op == 4:
-            print(getMemory(code, index + 1, m1))
+            print(getMemory(code, index, 1))
             index += 2
 
 if __name__ == '__main__':
