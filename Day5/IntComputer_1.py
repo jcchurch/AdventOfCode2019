@@ -11,7 +11,7 @@ def writeMemory(code, position, value):
 def intComputer(code):
     index = 0
     while code[index] != 99:
-        op = int(code[index] % 100)
+        op = code[index] % 100
         m1 = code[index] // 100 % 10
         m2 = code[index] // 1000 % 10
         m3 = code[index] // 10000 % 10 # Currently not in use
