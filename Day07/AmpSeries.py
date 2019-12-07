@@ -23,18 +23,13 @@ class IntComputer:
         while self.code[self.index] != 99:
             op = self.code[self.index] % 100
             if op == 1:
-                first = self.getMemory(1)
-                second = self.getMemory(2)
-                self.writeMemory(self.index + 3, first + second)
+                self.writeMemory(self.index + 3, self.getMemory(1) + self.getMemory(2))
                 self.index += 4
             if op == 2:
-                first = self.getMemory(1)
-                second = self.getMemory(2)
-                self.writeMemory(self.index + 3, first * second)
+                self.writeMemory(self.index + 3, self.getMemory(1) * self.getMemory(2))
                 self.index += 4
             if op == 3:
-                value = in_sequence[in_index]
-                self.writeMemory(self.index + 1, value)
+                self.writeMemory(self.index + 1, in_sequence[in_index])
                 in_index += 1
                 self.index += 2
             if op == 4:
@@ -42,29 +37,23 @@ class IntComputer:
                 self.index += 2
                 return value
             if op == 5:
-                first = self.getMemory(1)
-                second = self.getMemory(2)
-                self.index += 3
-                if first != 0:
-                    self.index = second
+                if self.getMemory(1) != 0:
+                    self.index = self.getMemory(2)
+                else:
+                    self.index += 3
             if op == 6:
-                first = self.getMemory(1)
-                second = self.getMemory(2)
-                self.index += 3
-                if first == 0:
-                    self.index = second
+                if self.getMemory(1) == 0:
+                    self.index = self.getMemory(2)
+                else:
+                    self.index += 3
             if op == 7:
-                first = self.getMemory(1)
-                second = self.getMemory(2)
                 self.writeMemory(self.index + 3, 0)
-                if first < second:
+                if self.getMemory(1) < self.getMemory(2):
                     self.writeMemory(self.index + 3, 1)
                 self.index += 4
             if op == 8:
-                first = self.getMemory(1)
-                second = self.getMemory(2)
                 self.writeMemory(self.index + 3, 0)
-                if first == second:
+                if self.getMemory(1) == self.getMemory(2):
                     self.writeMemory(self.index + 3, 1)
                 self.index += 4
 
