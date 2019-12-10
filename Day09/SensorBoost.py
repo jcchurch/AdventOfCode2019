@@ -38,7 +38,7 @@ class IntComputer:
         value = self.run()
         while value != None:
             outs.append(value)
-            value = cpu.run()
+            value = self.run()
         return outs
 
     def run(self):
