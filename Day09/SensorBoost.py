@@ -91,5 +91,7 @@ if __name__ == '__main__':
         for line in file:
             code = [int(x) for x in line.split(",")]
 
+    cpu = IntComputer(code, [1])
+    print("First:", cpu.full_run())
     cpu = IntComputer(code, [2])
-    print(cpu.full_run())
+    print("Second:", cpu.full_run())
