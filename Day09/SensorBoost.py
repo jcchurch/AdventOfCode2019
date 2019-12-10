@@ -1,5 +1,4 @@
 import sys
-import itertools
 
 class IntComputer:
     def __init__(self, code, in_sequence=[]):
