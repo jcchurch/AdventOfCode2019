@@ -106,13 +106,8 @@ if __name__ == '__main__':
 
     cpu = IntComputer(code, [1])
     color = cpu.run()
-    xs = []
-    ys = []
     while color != None:
         mymap[y][x] = color
-
-        xs.append(x)
-        ys.append(y)
 
         direction = cpu.run()
         if dy == 1 and direction == 0:
