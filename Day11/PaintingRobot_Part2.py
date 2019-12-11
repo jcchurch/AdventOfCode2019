@@ -95,25 +95,21 @@ if __name__ == '__main__':
 
     height = 10
     width = 50
-    mymap = [' '] * height
+    mymap = [0] * height
     for i in range(height):
-        mymap[i] = [' '] * width
+        mymap[i] = [0] * width
 
-    colors = [' ', '#']
     x = 0
     y = 0
     dx = 0
     dy = 1
-    local = str(x)+","+str(y)
-    grid = {}
 
     cpu = IntComputer(code, [1])
     color = cpu.run()
     xs = []
     ys = []
     while color != None:
-        grid[local] = color
-        mymap[y][x] = colors[color]
+        mymap[y][x] = color
 
         xs.append(x)
         ys.append(y)
@@ -145,10 +141,10 @@ if __name__ == '__main__':
             dx = 0
         x += dx
         y -= dy
-        local = str(x)+","+str(y)
-        cpu.add_input( grid.get(local, 0) )
+        cpu.add_input( mymap[y][x] )
         color = cpu.run()
 
     print("Second")
+    colors = [' ', '#']
     for m in mymap:
-        print("".join(m))
+        print("".join([colors[x] for x in m]))
