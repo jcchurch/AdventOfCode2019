@@ -41,8 +41,9 @@ class IntComputer:
             value = self.run()
         return outs
 
-    def add_input(self, data):
-        self.in_sequence.append(data)
+    def add(self, value):
+        assert type(value) == type(0)
+        self.in_sequence.append(value)
 
     def run(self):
         while self.code[self.instruction_pointer] != 99:
@@ -138,7 +139,7 @@ if __name__ == '__main__':
         x += dx
         y -= dy
         local = str(x)+","+str(y)
-        cpu.add_input( grid.get(local, 0) )
+        cpu.add( grid.get(local, 0) )
         color = cpu.run()
 
     print("First", len(grid))

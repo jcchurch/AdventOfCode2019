@@ -41,8 +41,9 @@ class IntComputer:
             value = self.run()
         return outs
 
-    def add_input(self, data):
-        self.in_sequence.append(data)
+    def add(self, value):
+        assert type(value) == type(0)
+        self.in_sequence.append(value)
 
     def run(self):
         while self.code[self.instruction_pointer] != 99:
@@ -136,7 +137,7 @@ if __name__ == '__main__':
             dx = 0
         x += dx
         y -= dy
-        cpu.add_input( mymap[y][x] )
+        cpu.add( mymap[y][x] )
         color = cpu.run()
 
     print("Second")
